@@ -355,22 +355,26 @@ class finance ( wx.Frame ):
 		self.income_data = wx.grid.Grid( self.income, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.income_data.CreateGrid( 20, 3 )
-		self.income_data.EnableEditing( True )
+		self.income_data.CreateGrid( 0, 5 )
+		self.income_data.EnableEditing( False )
 		self.income_data.EnableGridLines( True )
 		self.income_data.EnableDragGridSize( False )
 		self.income_data.SetMargins( 0, 0 )
 
 		# Columns
-		self.income_data.SetColSize( 0, 140 )
-		self.income_data.SetColSize( 1, 300 )
-		self.income_data.SetColSize( 2, 150 )
+		self.income_data.SetColSize( 0, 100 )
+		self.income_data.SetColSize( 1, 260 )
+		self.income_data.SetColSize( 2, 170 )
+		self.income_data.SetColSize( 3, 30 )
+		self.income_data.SetColSize( 4, 30 )
 		self.income_data.EnableDragColMove( False )
 		self.income_data.EnableDragColSize( True )
 		self.income_data.SetColLabelSize( 30 )
 		self.income_data.SetColLabelValue( 0, u"Tanggal" )
 		self.income_data.SetColLabelValue( 1, u"Keterangan" )
 		self.income_data.SetColLabelValue( 2, u"Nominal" )
+		self.income_data.SetColLabelValue( 3, wx.EmptyString )
+		self.income_data.SetColLabelValue( 4, wx.EmptyString )
 		self.income_data.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Rows
@@ -385,7 +389,7 @@ class finance ( wx.Frame ):
 		# Cell Defaults
 		self.income_data.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
 		self.income_data.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
-		self.income_data.SetMinSize( wx.Size( 690,-1 ) )
+		self.income_data.SetMinSize( wx.Size( 670,-1 ) )
 		self.income_data.SetMaxSize( wx.Size( -1,260 ) )
 
 		subfinance_sizer.Add( self.income_data, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
@@ -394,7 +398,7 @@ class finance ( wx.Frame ):
 		self.income.SetSizer( subfinance_sizer )
 		self.income.Layout()
 		subfinance_sizer.Fit( self.income )
-		self.finance_detail.AddPage( self.income, u"Pemasukan", True )
+		self.finance_detail.AddPage( self.income, u"Pemasukan", False )
 		self.outcome = wx.Panel( self.finance_detail, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.outcome.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
 		self.outcome.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOWTEXT ) )
@@ -448,22 +452,26 @@ class finance ( wx.Frame ):
 		self.outcome_data = wx.grid.Grid( self.outcome, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.outcome_data.CreateGrid( 20, 3 )
-		self.outcome_data.EnableEditing( True )
+		self.outcome_data.CreateGrid( 0, 5 )
+		self.outcome_data.EnableEditing( False )
 		self.outcome_data.EnableGridLines( True )
 		self.outcome_data.EnableDragGridSize( False )
 		self.outcome_data.SetMargins( 0, 0 )
 
 		# Columns
-		self.outcome_data.SetColSize( 0, 140 )
-		self.outcome_data.SetColSize( 1, 300 )
-		self.outcome_data.SetColSize( 2, 150 )
+		self.outcome_data.SetColSize( 0, 100 )
+		self.outcome_data.SetColSize( 1, 260 )
+		self.outcome_data.SetColSize( 2, 170 )
+		self.outcome_data.SetColSize( 3, 30 )
+		self.outcome_data.SetColSize( 4, 30 )
 		self.outcome_data.EnableDragColMove( False )
 		self.outcome_data.EnableDragColSize( True )
 		self.outcome_data.SetColLabelSize( 30 )
 		self.outcome_data.SetColLabelValue( 0, u"Tanggal" )
 		self.outcome_data.SetColLabelValue( 1, u"Keterangan" )
 		self.outcome_data.SetColLabelValue( 2, u"Nominal" )
+		self.outcome_data.SetColLabelValue( 3, wx.EmptyString )
+		self.outcome_data.SetColLabelValue( 4, wx.EmptyString )
 		self.outcome_data.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Rows
@@ -473,20 +481,21 @@ class finance ( wx.Frame ):
 
 		# Label Appearance
 		self.outcome_data.SetLabelBackgroundColour( wx.Colour( 198, 182, 228 ) )
+		self.outcome_data.SetLabelTextColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOWTEXT ) )
 
 		# Cell Defaults
 		self.outcome_data.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		self.outcome_data.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_LIGHT, False, wx.EmptyString ) )
-		self.outcome_data.SetMinSize( wx.Size( 690,-1 ) )
+		self.outcome_data.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+		self.outcome_data.SetMinSize( wx.Size( 670,-1 ) )
 		self.outcome_data.SetMaxSize( wx.Size( -1,260 ) )
 
-		subfinance_sizer2.Add( self.outcome_data, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+		subfinance_sizer2.Add( self.outcome_data, 0, wx.ALL, 5 )
 
 
 		self.outcome.SetSizer( subfinance_sizer2 )
 		self.outcome.Layout()
 		subfinance_sizer2.Fit( self.outcome )
-		self.finance_detail.AddPage( self.outcome, u"Pengeluaran", False )
+		self.finance_detail.AddPage( self.outcome, u"Pengeluaran", True )
 
 		finance_sizer.Add( self.finance_detail, 1, wx.EXPAND |wx.ALL, 5 )
 
@@ -592,18 +601,20 @@ class stock ( wx.Frame ):
 		self.st_data = wx.grid.Grid( self.stock_panel, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
 
 		# Grid
-		self.st_data.CreateGrid( 20, 5 )
-		self.st_data.EnableEditing( True )
+		self.st_data.CreateGrid( 2, 7 )
+		self.st_data.EnableEditing( False )
 		self.st_data.EnableGridLines( True )
 		self.st_data.EnableDragGridSize( False )
 		self.st_data.SetMargins( 0, 0 )
 
 		# Columns
 		self.st_data.SetColSize( 0, 90 )
-		self.st_data.SetColSize( 1, 220 )
-		self.st_data.SetColSize( 2, 120 )
-		self.st_data.SetColSize( 3, 80 )
-		self.st_data.SetColSize( 4, 80 )
+		self.st_data.SetColSize( 1, 170 )
+		self.st_data.SetColSize( 2, 170 )
+		self.st_data.SetColSize( 3, 50 )
+		self.st_data.SetColSize( 4, 50 )
+		self.st_data.SetColSize( 5, 30 )
+		self.st_data.SetColSize( 6, 30 )
 		self.st_data.EnableDragColMove( False )
 		self.st_data.EnableDragColSize( True )
 		self.st_data.SetColLabelSize( 30 )
@@ -612,6 +623,8 @@ class stock ( wx.Frame ):
 		self.st_data.SetColLabelValue( 2, u"Jenis Produk" )
 		self.st_data.SetColLabelValue( 3, u"Stok" )
 		self.st_data.SetColLabelValue( 4, u"Terjual" )
+		self.st_data.SetColLabelValue( 5, wx.EmptyString )
+		self.st_data.SetColLabelValue( 6, wx.EmptyString )
 		self.st_data.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
 		# Rows
@@ -621,14 +634,15 @@ class stock ( wx.Frame ):
 
 		# Label Appearance
 		self.st_data.SetLabelBackgroundColour( wx.Colour( 198, 182, 228 ) )
+		self.st_data.SetLabelTextColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOWTEXT ) )
 
 		# Cell Defaults
 		self.st_data.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
 		self.st_data.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
-		self.st_data.SetMinSize( wx.Size( 690,-1 ) )
-		self.st_data.SetMaxSize( wx.Size( -1,280 ) )
+		self.st_data.SetMinSize( wx.Size( 670,-1 ) )
+		self.st_data.SetMaxSize( wx.Size( -1,260 ) )
 
-		stpanel_sizer.Add( self.st_data, 0, wx.ALIGN_CENTER|wx.ALL, 5 )
+		stpanel_sizer.Add( self.st_data, 0, wx.ALL, 5 )
 
 
 		self.stock_panel.SetSizer( stpanel_sizer )
@@ -647,6 +661,7 @@ class stock ( wx.Frame ):
 		self.Bind( wx.EVT_MENU, self.stocktofin, id = self.st_menu2.GetId() )
 		self.Bind( wx.EVT_MENU, self.stocktologout, id = self.st_menu3.GetId() )
 		self.stock_button.Bind( wx.EVT_BUTTON, self.addnewstock )
+		self.st_data.Bind( wx.grid.EVT_GRID_SELECT_CELL, self.getcellpos )
 
 	def __del__( self ):
 		pass
@@ -663,6 +678,9 @@ class stock ( wx.Frame ):
 		event.Skip()
 
 	def addnewstock( self, event ):
+		event.Skip()
+
+	def getcellpos( self, event ):
 		event.Skip()
 
 
@@ -1029,6 +1047,154 @@ class add_outcome ( wx.Frame ):
 		event.Skip()
 
 	def add_outcome( self, event ):
+		event.Skip()
+
+
+###########################################################################
+## Class edit_stock
+###########################################################################
+
+class edit_stock ( wx.Frame ):
+
+	def __init__( self, parent ):
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Edit Produk", pos = wx.DefaultPosition, size = wx.Size( 720,480 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+
+		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.Colour( 198, 182, 228 ) )
+
+		addstock_sizer = wx.BoxSizer( wx.VERTICAL )
+
+		self.dummy1 = wx.StaticText( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.dummy1.Wrap( -1 )
+
+		self.dummy1.SetMinSize( wx.Size( -1,50 ) )
+
+		addstock_sizer.Add( self.dummy1, 0, wx.ALL, 5 )
+
+		self.addstock_panel = wx.Panel( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+		self.addstock_panel.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_BTNHIGHLIGHT ) )
+		self.addstock_panel.SetMinSize( wx.Size( 360,-1 ) )
+
+		addspanel_sizer = wx.BoxSizer( wx.VERTICAL )
+
+		self.dummy2 = wx.StaticText( self.addstock_panel, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.dummy2.Wrap( -1 )
+
+		self.dummy2.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+		self.dummy2.SetMinSize( wx.Size( -1,10 ) )
+
+		addspanel_sizer.Add( self.dummy2, 0, wx.ALL, 5 )
+
+		self.addstock_text = wx.StaticText( self.addstock_panel, wx.ID_ANY, u"Edit Produk", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.addstock_text.Wrap( -1 )
+
+		self.addstock_text.SetFont( wx.Font( 14, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+		self.addstock_text.SetMinSize( wx.Size( -1,30 ) )
+
+		addspanel_sizer.Add( self.addstock_text, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		subpanelstock_sizer = wx.FlexGridSizer( 5, 1, 10, 0 )
+		subpanelstock_sizer.SetFlexibleDirection( wx.BOTH )
+		subpanelstock_sizer.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+
+		subpanelstock_sizer.SetMinSize( wx.Size( -1,40 ) )
+		stock_label = wx.StaticBoxSizer( wx.StaticBox( self.addstock_panel, wx.ID_ANY, u"nama produk" ), wx.VERTICAL )
+
+		self.stock_input = wx.TextCtrl( stock_label.GetStaticBox(), wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.stock_input.SetMinSize( wx.Size( 220,-1 ) )
+
+		stock_label.Add( self.stock_input, 0, wx.ALL, 5 )
+
+
+		subpanelstock_sizer.Add( stock_label, 1, wx.EXPAND, 5 )
+
+		stock_label2 = wx.StaticBoxSizer( wx.StaticBox( self.addstock_panel, wx.ID_ANY, u"jenis produk" ), wx.VERTICAL )
+
+		self.stock_input2 = wx.TextCtrl( stock_label2.GetStaticBox(), wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.stock_input2.SetMinSize( wx.Size( 220,-1 ) )
+
+		stock_label2.Add( self.stock_input2, 0, wx.ALL, 5 )
+
+
+		subpanelstock_sizer.Add( stock_label2, 1, wx.EXPAND, 5 )
+
+		stock_label3 = wx.BoxSizer( wx.HORIZONTAL )
+
+		stock_label31 = wx.StaticBoxSizer( wx.StaticBox( self.addstock_panel, wx.ID_ANY, u"stok produk" ), wx.VERTICAL )
+
+		self.stock_input31 = wx.TextCtrl( stock_label31.GetStaticBox(), wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.stock_input31.SetMinSize( wx.Size( 110,-1 ) )
+
+		stock_label31.Add( self.stock_input31, 0, wx.ALL, 5 )
+
+
+		stock_label3.Add( stock_label31, 1, 0, 5 )
+
+		stock_label32 = wx.StaticBoxSizer( wx.StaticBox( self.addstock_panel, wx.ID_ANY, u"produk terjual" ), wx.HORIZONTAL )
+
+		self.stock_input32 = wx.TextCtrl( stock_label32.GetStaticBox(), wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.stock_input32.SetMinSize( wx.Size( 110,-1 ) )
+
+		stock_label32.Add( self.stock_input32, 0, wx.ALL, 5 )
+
+
+		stock_label3.Add( stock_label32, 1, 0, 5 )
+
+
+		subpanelstock_sizer.Add( stock_label3, 1, wx.EXPAND, 5 )
+
+		self.dummy = wx.StaticText( self.addstock_panel, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.dummy.Wrap( -1 )
+
+		self.dummy.SetFont( wx.Font( 1, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+		self.dummy.SetMinSize( wx.Size( -1,-10 ) )
+
+		subpanelstock_sizer.Add( self.dummy, 0, wx.ALL, 5 )
+
+		addstock_button = wx.StdDialogButtonSizer()
+		self.addstock_buttonSave = wx.Button( self.addstock_panel, wx.ID_SAVE )
+		addstock_button.AddButton( self.addstock_buttonSave )
+		self.addstock_buttonCancel = wx.Button( self.addstock_panel, wx.ID_CANCEL )
+		addstock_button.AddButton( self.addstock_buttonCancel )
+		addstock_button.Realize();
+
+		subpanelstock_sizer.Add( addstock_button, 1, wx.ALIGN_CENTER, 5 )
+
+
+		addspanel_sizer.Add( subpanelstock_sizer, 1, wx.ALIGN_CENTER, 5 )
+
+
+		self.addstock_panel.SetSizer( addspanel_sizer )
+		self.addstock_panel.Layout()
+		addspanel_sizer.Fit( self.addstock_panel )
+		addstock_sizer.Add( self.addstock_panel, 1, wx.ALIGN_CENTER|wx.ALL, 5 )
+
+		self.add_stock = wx.StaticText( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.add_stock.Wrap( -1 )
+
+		self.add_stock.SetMinSize( wx.Size( -1,50 ) )
+
+		addstock_sizer.Add( self.add_stock, 0, wx.ALL, 5 )
+
+
+		self.SetSizer( addstock_sizer )
+		self.Layout()
+
+		self.Centre( wx.BOTH )
+
+		# Connect Events
+		self.addstock_buttonCancel.Bind( wx.EVT_BUTTON, self.unadd_stock )
+		self.addstock_buttonSave.Bind( wx.EVT_BUTTON, self.added_stock )
+
+	def __del__( self ):
+		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def unadd_stock( self, event ):
+		event.Skip()
+
+	def added_stock( self, event ):
 		event.Skip()
 
 

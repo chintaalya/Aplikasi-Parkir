@@ -14,9 +14,20 @@ class Login(ui.login):
         self.SetIcon(wx.Icon("logo.ico"))
 
     def login( self, event ):
-        self.subframe = Dashboard(parent=None)
-        self.subframe.Show()
-        self.Destroy()
+        username = self.login_input.GetValue()
+        password = self.login_input2.GetValue()
+        if username == "" and password == "":
+            wx.MessageBox('Harap Mengisi Username dan Password Terlebih Dahulu', 'Peringatan', wx.OK | wx.ICON_WARNING)
+        elif username != "admin" and password != "12345":
+            wx.MessageBox('Username dan Password Salah', 'Peringatan', wx.OK | wx.ICON_WARNING)
+        elif username != "admin":
+            wx.MessageBox('Username Salah', 'Peringatan', wx.OK | wx.ICON_WARNING)
+        elif password != "12345":
+            wx.MessageBox('Password Salah', 'Peringatan', wx.OK | wx.ICON_WARNING)
+        else:
+            self.subframe = Dashboard(parent=None)
+            self.subframe.Show()
+            self.Destroy()
 
 class Dashboard(ui.dashboard):
     def __init__(self, parent):
@@ -45,35 +56,52 @@ class Dashboard(ui.dashboard):
         bulan_now = int(now.strftime("%m"))
         query ="select tanggal, nominal from pemasukan"
         data = self.new_obj.select(query)
-        graph = []
-        fix = []
+        tanggal = []
+        nominal = []
         for row in range(len(data)):
             if int(data[row][0][5:7]) == bulan_now:
-                fix.append(data[row])
-                bulan = int(data[row][0][5:7])
                 hari = int(data[row][0][8:10])
-                arr = [hari, bulan]
-                graph.append(arr)
-        x = [data[0] for data in graph]
-        y = [int(str(nom[1])[:-3]) for nom in fix]
+                if len(tanggal) == 0:
+                    tanggal.append(hari)
+                    total = data[row][1]
+                elif hari == tanggal[-1]:
+                    total = total + data[row][1]
+                else:
+                    nominal.append(total)
+                    tanggal.append(hari)
+                    total = data[row][1]
+            if row == len(data)-1:
+                nominal.append(total)
+
+        x = tanggal
+        y = [int(str(nom)[:-3]) for nom in nominal]
         x.insert(0,0)
         y.insert(0,0)
         self.graph_income.axes.plot(x,y)
         self.graph_income.canvas.draw()
         self.graph_income.axes.set_title('PEMASUKAN')
+
         query2 ="select tanggal, nominal from pengeluaran"
         data2 = self.new_obj.select(query2)
-        graph2 = []
-        fix2 = []
+        tanggal2 = []
+        nominal2 = []
         for row in range(len(data2)):
             if int(data2[row][0][5:7]) == bulan_now:
-                fix2.append(data2[row])
-                bulan = int(data2[row][0][5:7])
                 hari = int(data2[row][0][8:10])
-                arr = [hari, bulan]
-                graph2.append(arr)
-        x2 = [data[0] for data in graph2]
-        y2 = [int(str(nom[1])[:-3]) for (nom) in fix2]
+                if len(tanggal2) == 0:
+                    tanggal2.append(hari)
+                    total = data2[row][1]
+                elif hari == tanggal2[-1]:
+                    total = total + data2[row][1]
+                else:
+                    nominal2.append(total)
+                    tanggal2.append(hari)
+                    total = data2[row][1]
+            if row == len(data2)-1:
+                nominal2.append(total)
+
+        x2 = tanggal2
+        y2 = [int(str(nom)[:-3]) for nom in nominal2]
         x2.insert(0,0)
         y2.insert(0,0)
         self.graph_outcome.axes.plot(x2,y2)
@@ -89,37 +117,53 @@ class Dashboard(ui.dashboard):
         tahun_now = int(now.strftime("%Y"))
         query ="select tanggal, nominal from pemasukan"
         data = self.new_obj.select(query)
-        graph = []
-        fix = []
+        bulan = []
+        nominal = []
         for row in range(len(data)):
             if int(data[row][0][0:4]) == tahun_now:
-                fix.append(data[row])
-                tahun = int(data[row][0][0:4])
-                bulan = int(data[row][0][5:7])
-                arr = [tahun, bulan]
-                graph.append(arr)
-        x = [data[1] for data in graph]
-        y = [int(str(nom[1])[:-3]) for nom in fix]
+                nama_bulan = int(data[row][0][5:7])
+                if len(bulan) == 0:
+                    bulan.append(nama_bulan)
+                    total = data[row][1]
+                elif nama_bulan == bulan[-1]:
+                    total = total + data[row][1]
+                else:
+                    nominal.append(total)
+                    bulan.append(nama_bulan)
+                    total = data[row][1]
+            if row == len(data)-1:
+                nominal.append(total)
+        x = bulan
+        y = [int(str(nom)[:-3]) for nom in nominal]
         x.insert(0,0)
         y.insert(0,0)
         self.graph_income.axes.plot(x,y)
         self.graph_income.canvas.draw()
         self.graph_income.axes.set_title('PEMASUKAN')
+
         query2 ="select tanggal, nominal from pengeluaran"
         data2 = self.new_obj.select(query2)
-        graph2 = []
-        fix2 = []
+        bulan2 = []
+        nominal2 = []
         for row in range(len(data2)):
-            if int(data[row][0][0:4]) == tahun_now:
-                fix2.append(data2[row])
-                tahun = int(data[row][0][0:4])
-                bulan = int(data2[row][0][5:7])
-                arr = [tahun, bulan]
-                graph2.append(arr)
-        x2 = [data[1] for data in graph2]
-        y2 = [int(str(nom[1])[:-3]) for (nom) in fix2]
+            if int(data2[row][0][0:4]) == tahun_now:
+                nama_bulan = int(data2[row][0][5:7])
+                if len(bulan2) == 0:
+                    bulan2.append(nama_bulan)
+                    total = data2[row][1]
+                elif nama_bulan == bulan2[-1]:
+                    total = total + data2[row][1]
+                else:
+                    nominal2.append(total)
+                    bulan2.append(nama_bulan)
+                    total = data2[row][1]
+            if row == len(data2)-1:
+                nominal2.append(total)
+        x2 = bulan2
+        y2 = [int(str(nom)[:-3]) for nom in nominal2]
         x2.insert(0,0)
         y2.insert(0,0)
+        
         self.graph_outcome.axes.plot(x2,y2)
         self.graph_outcome.canvas.draw()
         self.graph_outcome.axes.set_title('PENGELUARAN')
@@ -182,7 +226,6 @@ class Income(ui.income):
     def getcellpos( self, event ):
         col = event.GetCol()
         row = event.GetRow()
-        print(col,row)
         if col == 4:
             self.new_obj = EditIncome(None, row, col, self.income_data.GetCellValue(row,0), self.income_data.GetCellValue(row,2), self.income_data.GetCellValue(row,3))
             self.new_obj.Show()
@@ -350,7 +393,6 @@ class Stock(ui.stock):
     def getcellpos( self, event ):
         col = event.GetCol()
         row = event.GetRow()
-        print(col,row)
         if col == 5:
             self.new_obj = EditStock(None, row, col, self.st_data.GetCellValue(row,0), self.st_data.GetCellValue(row,1), self.st_data.GetCellValue(row,2), self.st_data.GetCellValue(row,3), self.st_data.GetCellValue(row,4))            
             self.new_obj.Show()

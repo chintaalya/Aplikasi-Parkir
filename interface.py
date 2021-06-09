@@ -73,7 +73,7 @@ class login ( wx.Frame ):
 
 		login_label2 = wx.StaticBoxSizer( wx.StaticBox( self.login_panel, wx.ID_ANY, u"password" ), wx.VERTICAL )
 
-		self.login_input2 = wx.TextCtrl( login_label2.GetStaticBox(), wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.login_input2 = wx.TextCtrl( login_label2.GetStaticBox(), wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_PASSWORD )
 		self.login_input2.SetMinSize( wx.Size( 220,-1 ) )
 
 		login_label2.Add( self.login_input2, 0, wx.ALL, 5 )

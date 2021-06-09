@@ -15,6 +15,12 @@ class Connection:
         self.cursor.execute(query)
         self.data = self.cursor.fetchall()
         return self.data
+    
+    def update_insert(self,query,param):
+        self.cursor.execute(query,(param))
+        self.conn.commit()
+        self.conn.close()
+
         
 class Produk:
     def __init__(self, nama, jenis, stok, terjual):

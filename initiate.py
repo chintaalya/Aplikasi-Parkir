@@ -31,11 +31,11 @@ for pl in produklist:
         conn.commit()
 
 pemasukanlist = [
-    dbc.Moneyin(datetime.date(2021, 5, 21), "3 Box Masker terjual", 150000),
-    dbc.Moneyin(datetime.date(2021, 5, 21), "Pembelian 12 kemeja", 600000),
-    dbc.Moneyin(datetime.date(2021, 5, 25), "13 strapmask", 156000),
-    dbc.Moneyin(datetime.date(2021, 5, 26), "Penjualan 4 scrunchie", 20000),
-    dbc.Moneyin(datetime.date(2021, 5, 29), "2 kaos dipesan", 40000)
+    dbc.Moneyin(datetime.date(2021, 05, 21), "3 Box Masker terjual", 150000),
+    dbc.Moneyin(datetime.date(2021, 05, 21), "Pembelian 12 kemeja", 600000),
+    dbc.Moneyin(datetime.date(2021, 05, 25), "13 strapmask", 156000),
+    dbc.Moneyin(datetime.date(2021, 05, 26), "Penjualan 4 scrunchie", 20000),
+    dbc.Moneyin(datetime.date(2021, 05, 29), "2 kaos dipesan", 40000)
 ]
 for pml in pemasukanlist:
     tempo = conn.execute("select * from pemasukan where keterangan = ?", (pml.getKeterangan(),))
@@ -44,11 +44,11 @@ for pml in pemasukanlist:
         conn.commit()
 
 pengeluaranlist = [
-    dbc.Moneyout(datetime.date(2021, 5, 23), "Kain batik", 550000),
-    dbc.Moneyout(datetime.date(2021, 5, 25), "Tali karet 10 meter", 70000),
-    dbc.Moneyout(datetime.date(2021, 5, 25), "150 buah kancing merah", 46500),
-    dbc.Moneyout(datetime.date(2021, 5, 27), "Kain mori", 228000),
-    dbc.Moneyout(datetime.date(2021, 5, 30), "Manik - manik 12 set", 375000)
+    dbc.Moneyout(datetime.date(2021, 05, 23), "Kain batik", 550000),
+    dbc.Moneyout(datetime.date(2021, 05, 25), "Tali karet 10 meter", 70000),
+    dbc.Moneyout(datetime.date(2021, 05, 25), "150 buah kancing merah", 46500),
+    dbc.Moneyout(datetime.date(2021, 05, 27), "Kain mori", 228000),
+    dbc.Moneyout(datetime.date(2021, 05, 30), "Manik - manik 12 set", 375000)
 ]
 for pnl in pengeluaranlist:
     tempo = conn.execute("select * from pengeluaran where keterangan = ?", (pnl.getKeterangan(),))

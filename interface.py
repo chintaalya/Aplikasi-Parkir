@@ -187,7 +187,6 @@ class dashboard ( wx.Frame ):
 
 		subdbpanel_sizer = wx.BoxSizer( wx.HORIZONTAL )
 
-		subdbpanel_sizer.SetMinSize( wx.Size( -1,50 ) )
 		self.monthly_radio = wx.RadioButton( self.dashboard_panel, wx.ID_ANY, u"Bulanan", wx.DefaultPosition, wx.DefaultSize, 0 )
 		subdbpanel_sizer.Add( self.monthly_radio, 0, wx.ALL, 5 )
 
@@ -206,29 +205,15 @@ class dashboard ( wx.Frame ):
 		subdbpanel_sizer2.SetFlexibleDirection( wx.BOTH )
 		subdbpanel_sizer2.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-		self.db_text2 = wx.StaticText( self.dashboard_panel, wx.ID_ANY, u"PEMASUKAN", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.db_text2.Wrap( -1 )
-
-		self.db_text2.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
-		self.db_text2.SetMinSize( wx.Size( -1,30 ) )
-
-		subdbpanel_sizer2.Add( self.db_text2, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
-
-		self.db_text3 = wx.StaticText( self.dashboard_panel, wx.ID_ANY, u"PENGELUARAN", wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.db_text3.Wrap( -1 )
-
-		self.db_text3.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
-		self.db_text3.SetMinSize( wx.Size( -1,30 ) )
-
-		subdbpanel_sizer2.Add( self.db_text3, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
-
-		self.graph_income = wx.Panel( self.dashboard_panel, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
-		self.graph_income.SetMinSize( wx.Size( 355,120 ) )
+		self.graph_income = wx.Panel( self.dashboard_panel, wx.ID_ANY, wx.DefaultPosition, wx.Size( 300,250 ), wx.TAB_TRAVERSAL )
+		self.graph_income.SetMinSize( wx.Size( 300,250 ) )
+		self.graph_income.SetMaxSize( wx.Size( 300,250 ) )
 
 		subdbpanel_sizer2.Add( self.graph_income, 1, wx.EXPAND |wx.ALL, 5 )
 
-		self.graph_outcome = wx.Panel( self.dashboard_panel, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
-		self.graph_outcome.SetMinSize( wx.Size( 355,120 ) )
+		self.graph_outcome = wx.Panel( self.dashboard_panel, wx.ID_ANY, wx.DefaultPosition, wx.Size( 300,250 ), wx.TAB_TRAVERSAL )
+		self.graph_outcome.SetMinSize( wx.Size( 300,250 ) )
+		self.graph_outcome.SetMaxSize( wx.Size( 300,250 ) )
 
 		subdbpanel_sizer2.Add( self.graph_outcome, 1, wx.EXPAND |wx.ALL, 5 )
 

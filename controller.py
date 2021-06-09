@@ -3,6 +3,9 @@ import interface as ui
 import modal as md
 from imgGen import ImageGenerator as img
 from datetime import datetime
+from matplotlib.backends.backend_wxagg import FigureCanvasWxAgg as FigureCanvas
+import matplotlib.pyplot as plt 
+import numpy as np
 
 
 class Login(ui.login):
@@ -19,6 +22,52 @@ class Dashboard(ui.dashboard):
     def __init__(self, parent):
         super().__init__(parent)
         self.SetIcon(wx.Icon("logo.ico"))
+        self.new_obj = md.Connection()
+        self.graph_income.figure = plt.figure(figsize=(3,1))
+        self.graph_income.axes = self.graph_income.figure.add_subplot(1,1,1)
+        self.graph_income.canvas = FigureCanvas(self.graph_income, -1, self.graph_income.figure)
+        self.graph_income.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.graph_income.sizer.Add(self.graph_income.canvas, 1, wx.CENTER)
+        self.graph_income.SetSizer(self.graph_income.sizer)
+        self.graph_outcome.figure = plt.figure(figsize=(3,1))
+        self.graph_outcome.axes = self.graph_outcome.figure.add_subplot(1,1,1)
+        self.graph_outcome.canvas = FigureCanvas(self.graph_outcome, -1, self.graph_outcome.figure)
+        self.graph_outcome.sizer = wx.BoxSizer(wx.VERTICAL)
+        self.graph_outcome.sizer.Add(self.graph_outcome.canvas, 1, wx.CENTER)
+        self.graph_outcome.SetSizer(self.graph_outcome.sizer)
+        self.draw()
+    
+    def draw(self):
+        query ="select tanggal, nominal from pemasukan"
+        data = self.new_obj.select(query)
+        graph = []
+        for row in range(len(data)):
+            bulan = int(data[row][0][5:7])
+            hari = int(data[row][0][8:10])
+            arr = [hari, bulan]
+            graph.append(arr)
+        x = [data[0] for data in graph]
+        y = [int(str(nom[1])[:-3]) for (nom) in data]
+        self.graph_income.axes.plot(x,y)
+        self.graph_income.axes.set_title('PEMASUKAN')
+        query2 ="select tanggal, nominal from pengeluaran"
+        data2 = self.new_obj.select(query2)
+        graph2 = []
+        for row in range(len(data2)):
+            bulan = int(data2[row][0][5:7])
+            hari = int(data2[row][0][8:10])
+            arr = [hari, bulan]
+            graph2.append(arr)
+        x2 = [data[0] for data in graph2]
+        y2 = [int(str(nom[1])[:-3]) for (nom) in data2]
+        self.graph_outcome.axes.plot(x2,y2)
+        self.graph_outcome.axes.set_title('PENGELUARAN')
+
+    def monthly_report( self, event ):
+        event.Skip()
+
+    def annual_report( self, event ):
+        event.Skip()
 
     def dbtoincome( self, event ):
         self.subframe = Income(parent=None)

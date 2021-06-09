@@ -205,7 +205,7 @@ class dashboard ( wx.Frame ):
 		subdbpanel_sizer2.SetFlexibleDirection( wx.BOTH )
 		subdbpanel_sizer2.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-		self.graph_income = wx.Panel( self.dashboard_panel, wx.ID_ANY, wx.DefaultPosition, wx.Size( 300,250 ), wx.TAB_TRAVERSAL )
+		self.graph_income = wx.Panel( self.dashboard_panel, wx.ID_ANY, wx.Point( -1,-1 ), wx.Size( 300,250 ), wx.TAB_TRAVERSAL )
 		self.graph_income.SetMinSize( wx.Size( 300,250 ) )
 		self.graph_income.SetMaxSize( wx.Size( 300,250 ) )
 

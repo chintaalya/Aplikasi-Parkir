@@ -985,11 +985,11 @@
                                     <property name="wrap">-1</property>
                                 </object>
                             </object>
-                            <object class="sizeritem" expanded="0">
+                            <object class="sizeritem" expanded="1">
                                 <property name="border">5</property>
                                 <property name="flag">wxALIGN_CENTER</property>
                                 <property name="proportion">0</property>
-                                <object class="wxBoxSizer" expanded="0">
+                                <object class="wxBoxSizer" expanded="1">
                                     <property name="minimum_size">-1,-1</property>
                                     <property name="name">subdbpanel_sizer</property>
                                     <property name="orient">wxHORIZONTAL</property>
@@ -1237,10 +1237,10 @@
                                             <property name="id">wxID_ANY</property>
                                             <property name="max_size"></property>
                                             <property name="maximize_button">0</property>
-                                            <property name="maximum_size">350,250</property>
+                                            <property name="maximum_size">300,250</property>
                                             <property name="min_size"></property>
                                             <property name="minimize_button">0</property>
-                                            <property name="minimum_size">350,250</property>
+                                            <property name="minimum_size">300,250</property>
                                             <property name="moveable">1</property>
                                             <property name="name">graph_income</property>
                                             <property name="pane_border">1</property>
@@ -1248,10 +1248,10 @@
                                             <property name="pane_size"></property>
                                             <property name="permission">protected</property>
                                             <property name="pin_button">1</property>
-                                            <property name="pos"></property>
+                                            <property name="pos">-1,-1</property>
                                             <property name="resize">Resizable</property>
                                             <property name="show">1</property>
-                                            <property name="size">350,250</property>
+                                            <property name="size">300,250</property>
                                             <property name="subclass">; ; forward_declare</property>
                                             <property name="toolbar_pane">0</property>
                                             <property name="tooltip"></property>
@@ -1294,7 +1294,7 @@
                                             <property name="id">wxID_ANY</property>
                                             <property name="max_size"></property>
                                             <property name="maximize_button">0</property>
-                                            <property name="maximum_size">350,250</property>
+                                            <property name="maximum_size">300,250</property>
                                             <property name="min_size"></property>
                                             <property name="minimize_button">0</property>
                                             <property name="minimum_size">300,250</property>
@@ -1308,7 +1308,7 @@
                                             <property name="pos"></property>
                                             <property name="resize">Resizable</property>
                                             <property name="show">1</property>
-                                            <property name="size">350,250</property>
+                                            <property name="size">300,250</property>
                                             <property name="subclass">; ; forward_declare</property>
                                             <property name="toolbar_pane">0</property>
                                             <property name="tooltip"></property>

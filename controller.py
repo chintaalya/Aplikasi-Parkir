@@ -35,39 +35,94 @@ class Dashboard(ui.dashboard):
         self.graph_outcome.sizer = wx.BoxSizer(wx.VERTICAL)
         self.graph_outcome.sizer.Add(self.graph_outcome.canvas, 1, wx.CENTER)
         self.graph_outcome.SetSizer(self.graph_outcome.sizer)
-        self.draw()
     
-    def draw(self):
+    def monthly_report( self, event ):
+        self.graph_income.figure.set_canvas(self.graph_income.canvas)
+        self.graph_income.axes.clear()
+        self.graph_outcome.figure.set_canvas(self.graph_outcome.canvas)
+        self.graph_outcome.axes.clear()
+        now = datetime.now()
+        bulan_now = int(now.strftime("%m"))
         query ="select tanggal, nominal from pemasukan"
         data = self.new_obj.select(query)
         graph = []
+        fix = []
         for row in range(len(data)):
-            bulan = int(data[row][0][5:7])
-            hari = int(data[row][0][8:10])
-            arr = [hari, bulan]
-            graph.append(arr)
+            if int(data[row][0][5:7]) == bulan_now:
+                fix.append(data[row])
+                bulan = int(data[row][0][5:7])
+                hari = int(data[row][0][8:10])
+                arr = [hari, bulan]
+                graph.append(arr)
         x = [data[0] for data in graph]
-        y = [int(str(nom[1])[:-3]) for (nom) in data]
+        y = [int(str(nom[1])[:-3]) for nom in fix]
+        x.insert(0,0)
+        y.insert(0,0)
         self.graph_income.axes.plot(x,y)
+        self.graph_income.canvas.draw()
         self.graph_income.axes.set_title('PEMASUKAN')
         query2 ="select tanggal, nominal from pengeluaran"
         data2 = self.new_obj.select(query2)
         graph2 = []
+        fix2 = []
         for row in range(len(data2)):
-            bulan = int(data2[row][0][5:7])
-            hari = int(data2[row][0][8:10])
-            arr = [hari, bulan]
-            graph2.append(arr)
+            if int(data2[row][0][5:7]) == bulan_now:
+                fix2.append(data2[row])
+                bulan = int(data2[row][0][5:7])
+                hari = int(data2[row][0][8:10])
+                arr = [hari, bulan]
+                graph2.append(arr)
         x2 = [data[0] for data in graph2]
-        y2 = [int(str(nom[1])[:-3]) for (nom) in data2]
+        y2 = [int(str(nom[1])[:-3]) for (nom) in fix2]
+        x2.insert(0,0)
+        y2.insert(0,0)
         self.graph_outcome.axes.plot(x2,y2)
+        self.graph_outcome.canvas.draw()
         self.graph_outcome.axes.set_title('PENGELUARAN')
 
-    def monthly_report( self, event ):
-        event.Skip()
-
     def annual_report( self, event ):
-        event.Skip()
+        self.graph_income.figure.set_canvas(self.graph_income.canvas)
+        self.graph_income.axes.clear()
+        self.graph_outcome.figure.set_canvas(self.graph_outcome.canvas)
+        self.graph_outcome.axes.clear()
+        now = datetime.now()
+        tahun_now = int(now.strftime("%Y"))
+        query ="select tanggal, nominal from pemasukan"
+        data = self.new_obj.select(query)
+        graph = []
+        fix = []
+        for row in range(len(data)):
+            if int(data[row][0][0:4]) == tahun_now:
+                fix.append(data[row])
+                tahun = int(data[row][0][0:4])
+                bulan = int(data[row][0][5:7])
+                arr = [tahun, bulan]
+                graph.append(arr)
+        x = [data[1] for data in graph]
+        y = [int(str(nom[1])[:-3]) for nom in fix]
+        x.insert(0,0)
+        y.insert(0,0)
+        self.graph_income.axes.plot(x,y)
+        self.graph_income.canvas.draw()
+        self.graph_income.axes.set_title('PEMASUKAN')
+        query2 ="select tanggal, nominal from pengeluaran"
+        data2 = self.new_obj.select(query2)
+        graph2 = []
+        fix2 = []
+        for row in range(len(data2)):
+            if int(data[row][0][0:4]) == tahun_now:
+                fix2.append(data2[row])
+                tahun = int(data[row][0][0:4])
+                bulan = int(data2[row][0][5:7])
+                arr = [tahun, bulan]
+                graph2.append(arr)
+        x2 = [data[1] for data in graph2]
+        y2 = [int(str(nom[1])[:-3]) for (nom) in fix2]
+        x2.insert(0,0)
+        y2.insert(0,0)
+        self.graph_outcome.axes.plot(x2,y2)
+        self.graph_outcome.canvas.draw()
+        self.graph_outcome.axes.set_title('PENGELUARAN')
 
     def dbtoincome( self, event ):
         self.subframe = Income(parent=None)
